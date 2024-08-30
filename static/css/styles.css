@@ -1,0 +1,38 @@
+body {
+    background-color: #f6f4f3;
+}
+.li-btn {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration-line: none;
+}
+.li-btn-inicio {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration-line: none;
+}
+.hover-shadow:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+.hero-text {
+    padding: 50px;
+    text-align: center; /* Alinea el texto a la izquierda */
+    margin: 0; /* Elimina el margen por defecto */
+
+}
+.hero-text h2 {
+    font-size: 3rem; /* Ajusta el tamaño de la fuente */
+    font-weight: bold; /* Aumenta el peso de la fuente */
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+}

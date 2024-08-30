@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogar de 4 Patas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header class="border-bottom border-success">
+        <div class="container d-flex justify-content-between align-items-center py-1">
+            <div class="d-flex align-items-center">
+                <img src="{% static 'img/logo.png' %}" alt="Logo Hogar de 4 Patas" class="me-3" height="100">
+                <h1 class="p-0 m-0">HOGAR DE 4 PATAS</h1>
+            </div>
+
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-success li-btn-inicio hover-shadow" href="#">INICIO</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">REPORTAR</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">HOGAR TEMPORAL</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">AYUDALOS</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero d-flex align-items-center" style="background-image: url('{% static 'img/dogfondo.png' %}'); height: 80vh; background-size: cover; background-position: center;">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2 class="text-white">Por unas patitas seguras</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
