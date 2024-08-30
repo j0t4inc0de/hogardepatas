@@ -10,3 +10,4 @@ Inscripcion hogares temporales (Posible Problematica)
 Los hogares temporales tendran una valoracion y seguimiento
 Tambien la aplicacion implementara Sistema de Donaciones caritativas (dineros o comida) para dichos tratamientos
 La aplicacion seria multiplataforma codificada para web y movil
+![CAPTURA](https://github.com/user-attachments/assets/5fd165b1-bf86-46a7-9307-202fbfb92f9a)
