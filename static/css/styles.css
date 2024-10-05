@@ -1,6 +1,4 @@
-body {
-    background-color: #f6f4f3;
-}
+
 .li-btn {
     color: #000000;
     font-size: 18px;
@@ -35,9 +33,6 @@ body {
     font-weight: bold; /* Aumenta el peso de la fuente */
     text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7); /* Sombra del texto */
 }
-
-
-
 
 
 * {
