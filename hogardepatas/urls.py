@@ -27,3 +27,4 @@ urlpatterns = [
     path('hogardepatas/hogartemporal/', ir_reportes, name='hogartemporal'),
     path('hogardepatas/faq/', ir_faq, name='faq'),
 ]
+urlpatterns+= staticfiles_urlpatterns()
