@@ -1,2 +1,2 @@
-web: gunicornd hogardepatas-app.wsgi
+web: gunicorn hogardepatas-app.wsgi
 heroku ps:scale web=1
