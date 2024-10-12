@@ -11,3 +11,4 @@ Los hogares temporales tendran una valoracion y seguimiento
 Tambien la aplicacion implementara Sistema de Donaciones caritativas (dineros o comida) para dichos tratamientos
 La aplicacion seria multiplataforma codificada para web y movil
 ![CAPTURA](https://github.com/user-attachments/assets/5fd165b1-bf86-46a7-9307-202fbfb92f9a)
+![Ayudalos](https://github.com/user-attachments/assets/03833be5-c3d7-4fb9-831a-8fd3ccf641c8)
