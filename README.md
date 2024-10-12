@@ -1,6 +1,6 @@
 Nombre: ? 
 Problematica:
- 1: Sobrepoblacion de animales, propagación de enfermedades y perros agresivos sueltos. 
+1: Sobrepoblacion de animales, propagación de enfermedades y perros agresivos sueltos. 
 2: No se encuentra gente voluntaria para hogares temporales
 Solucion: 
 Control y Identificación de los animales 
