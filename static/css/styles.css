@@ -1,37 +1,171 @@
+/* navbar de index.html */
 body {
-    background-color: #f6f4f3;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0e9;
 }
-.li-btn {
-    color: #000000;
-    font-size: 18px;
+
+header {
+    background-color: #f7f6f2;
+}
+
+.col-md-4 img {
+    max-width: 50%; /* Ajusta el tamaño para que las imágenes ocupen el 48% del ancho del contenedor */
+    height: auto; /* Mantén la proporción de las imágenes */
+}
+
+.nav-link {
     font-weight: bold;
-    text-decoration-line: none;
+    font-size: 1.1rem;
 }
-.li-btn-inicio {
-    font-size: 20px;
+
+.hero-content {
+    text-align: left;
+}
+
+.hero-text h2 {
+    font-size: 3rem;
     font-weight: bold;
-    text-decoration-line: none;
+    text-shadow: 2px 2px 4px #000000;
 }
+
+main .lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+img {
+    border-radius: 10px;
+}
+
+.btn-lg {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+}
+
 .hover-shadow:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.hero {
-    position: relative;
-    overflow: hidden;
+.btn-contactanos {
+    display: inline-block;
+    background-color: #d8cdc2; /* Color de fondo similar al de la imagen */
+    color: white; /* Texto en color blanco */
+    padding: 10px 20px; /* Ajusta el tamaño del botón */
+    border-radius: 30px; /* Bordes redondeados */
+    font-weight: bold; /* Texto en negrita */
+    text-decoration: none; /* Elimina el subrayado */
+    text-align: center; /* Centra el texto */
+    font-size: 18px; /* Ajusta el tamaño del texto */
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
 }
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-.hero-text {
-    padding: 50px;
-    text-align: center; /* Alinea el texto a la izquierda */
-    margin: 0; /* Elimina el margen por defecto */
 
+.btn-contactanos:hover {
+    background-color: #b8a99a; /* Color de fondo más oscuro al hacer hover */
 }
-.hero-text h2 {
-    font-size: 3rem; /* Ajusta el tamaño de la fuente */
-    font-weight: bold; /* Aumenta el peso de la fuente */
-    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.7); /* Sombra del texto */
+
+/* ayudalos.html */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+#ayudalos {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.donacion-opcion {
+    margin-bottom: 40px;
+}
+
+h2 {
+    color: #ff6b6b;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.transferencia-info {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.transferencia-info p {
+    margin: 5px 0;
+}
+
+.ubicaciones ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.ubicaciones li {
+    margin-bottom: 10px;
+}
+
+.donacion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.donacion-form label {
+    font-weight: bold;
+}
+
+.donacion-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.donacion-form button {
+    padding: 10px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.donacion-form button:hover {
+    background-color: #ff4b4b;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* La imagen de fondo se queda fija al hacer scroll */
+    color: #333;
+}
+
+#ayudalos {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente para que el texto sea legible */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }

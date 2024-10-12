@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogar de 4 Patas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'img/grupo-cachorros.jpg' %}");
+        }
+        .icono-volver {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 35px;
+            color: #ff4b4b;
+            text-decoration: none;
+        }
+
+        .icono-volver:hover {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'index' %}" class="icono-volver" title="Volver al inicio">
+        <i class="fa-solid fa-xmark"></i>
+    </a>
+    <section id="ayudalos">
+        <h1>Ayúdalos</h1>
+        <p>Si deseas realizar una donación caritativa, elige una opción a continuación:</p>
+
+        <!-- Donación de Dinero -->
+        <div class="donacion-opcion">
+            <h2>Donar Dinero</h2>
+            <p>Solo aceptamos donaciones monetarias a través de transferencia bancaria.</p>
+            <div class="transferencia-info">
+                <h3>Datos de la cuenta:</h3>
+                <p><strong>Banco:</strong>Tenpo</p>
+                <p><strong>Nombre:</strong>Hogar de patas</p>
+                <p><strong>Número de cuenta:</strong>111121351502</p>
+                <p><strong>Tipo de cuenta:</strong>Cuenta Vista</p>
+                <p><strong>Correo:</strong>hogardepatas@gmail.com</p>
+                <p><strong>Referencia:</strong> Donación</p>
+            </div>
+        </div>
+
+        <!-- Donación de objetos -->
+        <div class="donacion-opcion">
+            <h2>Donar Objetos/Insumos</h2>
+            <p>Puedes donar objetos como comida de perro, ropa de perro o juguetes de perro. Puedes considerar ir a dejarnos tu donacion a cualquiera de las siguientes ubicaciones:</p>
+
+            <!-- Ubicaciones -->
+            <div class="ubicaciones">
+                <h3>Ubicaciones para dejar la donación:</h3>
+                <ul>
+                    <li>Sucursal 1: Av. 21 de Mayo 701</li>
+                    <li>Sucursal 2: Laja, Calle 4, N°6b</li>
+                </ul>
+            </div>
+            
+            <!-- Formulario para donación de objetos -->
+            <h3>Formulario de Donación </h3>
+            <p>Si no puedes acercarte a ninguna de las ubicaciones anteriormente mostradas, puede mandarnos tus datos en este formulario para nosotros cordinar contigo e ir a por tu donacion</p>
+            <p>Ningun dato que entreges en este formulario será publico, solo sera visto por ti y la persona de la fundacion que cordine la visita</p>
+            
+            <form id="donacion-form" class="donacion-form">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="donacion">¿Qué deseas donar?</label>
+                <input type="text" id="donacion" name="donacion" required>
+
+                <label for="contacto">Número de contacto:</label>
+                <input type="tel" id="contacto" name="contacto" required>
+
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+
+                <button type="button" onclick="enviarWhatsApp()">Coordinar donación <i class="fa-brands fa-whatsapp"></i></button>
+            </form>
+        </div>
+    </section>
+    <script>
+        function enviarWhatsApp() {
+            // Obtén los valores de los campos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const donacion = document.getElementById('donacion').value;
+            const contacto = document.getElementById('contacto').value;
+            const direccion = document.getElementById('direccion').value;
+
+            // Crea el mensaje que quieres enviar a WhatsApp
+            const mensaje = `Hola, soy ${nombre}. Quiero donar ${donacion}. Mi número de contacto es ${contacto} y mi dirección es ${direccion}. ¿Como cordinamos la visita?`;
+
+            // Crea el enlace de WhatsApp con el número de teléfono de destino (ejemplo: +569xxxxxxxx)
+            const numeroWhatsApp = '56953134406'; // Cambia esto por el número real de WhatsApp de la fundación
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+            // Redirige al usuario a WhatsApp con el mensaje preformateado
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

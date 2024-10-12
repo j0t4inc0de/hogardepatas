@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hogar de 4 Patas</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
+    <!-- Header -->
     <header class="border-bottom border-success">
         <div class="container d-flex justify-content-between align-items-center py-1">
             <div class="d-flex align-items-center">
@@ -22,17 +22,17 @@
                     <li class="nav-item">
                         <a class="nav-link text-success li-btn-inicio hover-shadow" href="#">INICIO</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">REPORTAR</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">HOGAR TEMPORAL</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">AYUDALOS</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="#">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="{% url 'reportes' %}">REPORTAR</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="{% url 'hogartemporal' %}">HOGAR TEMPORAL</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="{% url 'ayudalos' %}">AYUDALOS</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark li-btn hover-shadow" href="{% url 'faq' %}">FAQ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero d-flex align-items-center" style="background-image: url('{% static 'img/dogfondo.png' %}'); height: 80vh; background-size: cover; background-position: center;">
+    <section class="hero d-flex align-items-center" style="background-image: url('{% static 'img/dogfondo.png' %}'); height: 60vh; background-size: cover; background-position: center;">
         <div class="container hero-content">
             <div class="hero-text">
                 <h2 class="text-white">Por unas patitas seguras</h2>
@@ -40,6 +40,39 @@
         </div>
     </section>
 
+    <!-- Contenido Principal -->
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="lead">
+                    Es una iniciativa que busca mejorar la vida de los animales en situación de calle. Nacimos de la preocupación por la creciente cantidad de animales abandonados y la necesidad de crear soluciones concretas. En esta página podrás <strong>reportar a animales vistos en calles</strong> junto a su condición y localización para poder ir en su ayuda.
+                    Podrás <strong>inscribirte para ser un hogar temporal</strong> cumpliendo unos pocos requisitos. Ayudar con <strong>donaciones caritativas</strong>, como dinero, comida o juguetes perrunos.
+                </p>
+            </div>
+            <div class="col-md-4 d-flex justify-content-between">
+                <img src="{% static 'img/perro1.jpeg' %}" alt="Perro rescatado 1" class="img-fluid rounded me-2">
+                <img src="{% static 'img/perro2.jpeg' %}" alt="Perro rescatado 2" class="img-fluid rounded">
+            </div>
+        </div>
+    </main>
+
+    <!-- Botón Contactar -->
+    <div class="text-center my-5">
+        <a href="#" class="btn-contactanos" onclick="enviarWhatsApp()">CONTACTANOS</a>
+    </div>
+    <script>
+        function enviarWhatsApp() {
+            // Crea el mensaje que quieres enviar a WhatsApp
+            const mensaje = `Hola, quiero contactarme con la fundacion 'Hogar de 4 patas'`;
+
+            // Crea el enlace de WhatsApp con el número de teléfono de destino (ejemplo: +569xxxxxxxx)
+            const numeroWhatsApp = '56953134406'; // Cambia esto por el número real de WhatsApp de la fundación
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+            // Redirige al usuario a WhatsApp con el mensaje preformateado
+            window.open(url, '_blank');
+        }
+    </script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
