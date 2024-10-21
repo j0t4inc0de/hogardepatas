@@ -27,6 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['hogardepatas-e0b0b92bd186.herokuapp.com','127.0.0.1'] # '127.0.0.1' es para que runserver funcione, osea una ip local
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'hogarde4patas@gmail.com'  # Coloca tu dirección de correo
+EMAIL_HOST_PASSWORD = 'hogardepatas444'     # Coloca tu contraseña
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Application definition
 

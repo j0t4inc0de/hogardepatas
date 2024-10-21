@@ -1,15 +1,100 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <title>Hogar de 4 Patas</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <title>Reporte de Animal en Situación de Calle - Hogar de 4 Patas</title>
+    <style>
+        .map-container {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1 class="text-center text-dark">Pagina en proceso</h2>
-    <h2 class="text-center text-success">Reportes</h2>
+    <div class="container mt-5">
+        <h1 class="text-center text-dark">Reportar Animal</h1>
+        <h2 class="text-center text-success">Proporciona la información del animal</h2>
+
+        <!-- Formulario de Reporte -->
+        <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+            
+            <!-- Ubicación del animal (mapa) -->
+            <div class="mb-3">
+                <label for="ubicacion" class="form-label">Ubicación del animal (Haz clic en el mapa para seleccionar):</label>
+                <div id="map" class="map-container"></div>
+                <input type="hidden" id="ubicacion" name="ubicacion" required>
+            </div>
+
+            <!-- Estado de salud -->
+            <div class="mb-3">
+                <label for="estado_salud" class="form-label">Estado de salud del animal:</label>
+                <select class="form-select" id="estado_salud" name="estado_salud" required>
+                    <option value="Bueno">Bueno</option>
+                    <option value="Herido">Herido</option>
+                    <option value="Enfermo">Enfermo</option>
+                    <option value="Desnutrido">Desnutrido</option>
+                </select>
+            </div>
+
+            <!-- Fotografías del animal -->
+            <div class="mb-3">
+                <label for="fotografias" class="form-label">Sube fotografías del animal:</label>
+                <input type="file" class="form-control" id="fotografias" name="fotografias" multiple required>
+            </div>
+
+            <!-- Fecha y hora del reporte -->
+            <div class="mb-3">
+                <label for="fecha_hora" class="form-label">Fecha y hora del reporte:</label>
+                <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" required>
+            </div>
+
+            <!-- Botón para enviar -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">Enviar Reporte</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Leaflet JS (para el mapa) -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para manejar el mapa -->
+    <script>
+        // Iniciar el mapa centrado en una coordenada inicial (ej. centro en Chile)
+        var map = L.map('map').setView([-33.447487, -70.673676], 10); // Latitud/longitud de ejemplo
+
+        // Añadir capa de mapa (usando OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Variable para almacenar el marcador en el mapa
+        var marker;
+
+        // Evento para manejar el clic en el mapa y seleccionar ubicación
+        map.on('click', function(e) {
+            // Si ya existe un marcador, lo eliminamos
+            if (marker) {
+                map.removeLayer(marker);
+            }
+            // Añadir nuevo marcador en la ubicación clickeada
+            marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+
+            // Asignar la latitud y longitud al campo oculto del formulario
+            document.getElementById('ubicacion').value = e.latlng.lat + ',' + e.latlng.lng;
+        });
+    </script>
 </body>
 </html>
