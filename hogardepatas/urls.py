@@ -17,14 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from App.views import inicio, ir_ayudalos, ir_reportes, ir_faq
+from App.views import inicio, ir_ayudalos, ir_reportes, ir_faq, ir_hogartemporal
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='index'),
     path('hogardepatas/ayudalos/',ir_ayudalos, name='ayudalos'),
     path('hogardepatas/reportes/', ir_reportes, name='reportes'),
-    path('hogardepatas/hogartemporal/', ir_reportes, name='hogartemporal'),
+    path('hogardepatas/hogartemporal/', ir_hogartemporal, name='hogartemporal'),
     path('hogardepatas/faq/', ir_faq, name='faq'),
 ]
 urlpatterns+= staticfiles_urlpatterns()
