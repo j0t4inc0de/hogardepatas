@@ -8,7 +8,6 @@ def enviar_reporte(request):
     if request.method == 'POST':
         ubicacion = request.POST['ubicacion']
         estado_salud = request.POST['estado_salud']
-        # fecha_hora = request.POST['fecha_hora']
         fotos = request.FILES.getlist('fotografias')
 
         # Guardar fotos temporalmente
@@ -23,8 +22,10 @@ def enviar_reporte(request):
 
         - Ubicación: {ubicacion}
         - Estado de salud: {estado_salud}
-        # - Fecha y hora del reporte: {fecha_hora}
+        - Fotos: {', '.join(fotos_urls)}
+        """
 
+        """
         Revisa el panel de administración para más detalles.
         """
         
@@ -37,7 +38,7 @@ def enviar_reporte(request):
             fail_silently=False,
         )
 
-        return redirect('gracias')  # Redirigir a una página de "Gracias"
+        return redirect('index')  # Redirigir a una página de "Gracias"
     return render(request, 'reportes_page.html')
 
 def inicio(request):
