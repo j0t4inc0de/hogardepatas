@@ -33,7 +33,7 @@ def enviar_reporte(request):
             'Nuevo reporte de animal en Hogar de 4 Patas',
             mensaje,
             settings.EMAIL_HOST_USER,
-            ['receptor@correo.com'],  # Cambia esto al correo de la fundación
+            ['hogarde4patas@gmail.com'],  # Cambia esto al correo de la fundación
             fail_silently=False,
         )
 
