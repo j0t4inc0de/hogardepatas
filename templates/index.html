@@ -8,6 +8,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
+<style>
+    button {
+        color: #090909;
+        padding: 0.7em 1.7em;
+        font-size: 18px;
+        border-radius: 0.5em;
+        background: #e8e8e8;
+        cursor: pointer;
+        border: 1px solid #e8e8e8;
+        transition: all 0.3s;
+        box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    }
+    button:active {
+        color: #666;
+        box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+    }
+</style>
 <body>
     <!-- Header -->
     <header class="border-bottom border-success">
@@ -32,7 +49,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero d-flex align-items-center" style="background-image: url('{% static 'img/dogfondo.png' %}'); height: 60vh; background-size: cover; background-position: center;">
+    <section class="hero d-flex align-items-center" style="background-image: url({% static 'img/dogfondo.png' %}); height: 60vh; background-size: cover; background-position: center;">
         <div class="container hero-content">
             <div class="hero-text">
                 <h2 class="text-white">Por unas patitas seguras</h2>
@@ -57,8 +74,11 @@
     </main>
 
     <!-- Botón Contactar -->
-    <div class="text-center my-5">
+    <!-- <div class="text-center my-5">
         <a href="#" class="btn-contactanos" onclick="enviarWhatsApp()">CONTACTANOS</a>
+    </div> -->
+    <div class="text-center my-5">
+        <button>Contactanos</button>
     </div>
     <script>
         function enviarWhatsApp() {
