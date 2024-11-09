@@ -9,52 +9,85 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <style>
-    button {
-    background-color: #fff;
-    border: 1px solid #25D366;
-    padding: 5px;
-    position: relative;
-    width: 145px;
-    height: 40px;
-    transition: 0.5s;
-    font-size: 17px;
-    border-radius: 0.4em;
+        /* Fondo de la página */
+        body {
+            background-color: #f3f7fc; /* Color 50 */
+            color: #1f3f5b; /* Color 900 para las letras */
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #3886bf; /* Color 500 */
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #f3f7fc; /* Color 50 para el texto del navbar */
+        }
+
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #d5e6f4; /* Color 200 para hover */
+        }
+
+        /* Botón de Volver */
+        .icono-volver {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 35px;
+            color: #ff4b4b;
+            text-decoration: none;
+        }
+
+        .icono-volver:hover {
+            color: #ff6b6b;
+        }
+
+        button {
+            background-color: #215583;
+            border: 1px solid #ffffff;
+            padding: 5px;
+            position: relative;
+            width: 145px;
+            height: 42px;
+            transition: 0.5s;
+            font-size: 17px;
+            border-radius: 0.4em;
     }
 
-    button p {
-    position: absolute;
-    top: 0.4em;
-    left: 1.15em;
-    margin: 0;
-    padding: 0;
-    transition: .5s;
-    color: #25D366;
+        button p {
+            position: absolute;
+            top: 0.4em;
+            left: 1.15em;
+            margin: 0;
+            padding: 0;
+            transition: .5s;
+            color: #ffffff;
     }
 
-    button svg {
-    position: absolute;
-    top: 0.45em;
-    right: 0.5em;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    transition: 0.5s;
-    height: 1em;
-    fill: #fff
-    }
+        button svg {
+            position: absolute;
+            top: 0.45em;
+            right: 0.5em;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: 0.5s;
+            height: 1em;
+            fill: #fff
+        }
 
-    button:hover p {
-    left: 0.5em;
-    color: #fff
-    }
+        button:hover p {
+            left: 0.5em;
+            color: #fff
+        }
 
-    button:hover svg {
-    opacity: 1;
-    }
+        button:hover svg {
+            opacity: 1;
+        }
 
-    button:hover {
-    background-color: #25D366;
-    }
+        button:hover {
+            background-color: #25D366;
+        }
 </style>
 <body>
     <!-- Header -->
@@ -104,14 +137,6 @@
         </div>
     </main>
 
-    <!-- Botón Contactar -->
-    <!-- <div class="text-center my-5">
-        <a href="#" class="btn-contactanos" onclick="enviarWhatsApp()">CONTACTANOS</a>
-    </div> -->
-    <!-- Boton Contactar 2 -->
-    <!-- <div class="text-center my-5">
-        <button>Contactanos</button>
-    </div> -->
     <!-- Boton Contactar 3 -->
     <div class="text-center my-5">
         <button onclick="enviarWhatsApp()">

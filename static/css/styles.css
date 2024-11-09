@@ -1,11 +1,7 @@
 /* navbar de index.html */
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0e9;
-}
-
-header {
-    background-color: #f7f6f2;
 }
 
 .col-md-4 img {
@@ -13,10 +9,7 @@ header {
     height: auto; /* Mantén la proporción de las imágenes */
 }
 
-.nav-link {
-    font-weight: bold;
-    font-size: 1.1rem;
-}
+
 
 .hero-content {
     text-align: left;

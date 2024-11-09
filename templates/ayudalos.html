@@ -11,8 +11,25 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
         body {
+            background-color: #f3f7fc; /* Color 50 */
             background-image: url("{% static 'img/grupo-cachorros.jpg' %}");
+            color: #1f3f5b; /* Color 900 para las letras */
         }
+
+        /* Navbar */
+        .navbar {
+            background-color: #3886bf; /* Color 500 */
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #f3f7fc; /* Color 50 para el texto del navbar */
+        }
+
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #d5e6f4; /* Color 200 para hover */
+        }
+
+        /* Botón de Volver */
         .icono-volver {
             position: absolute;
             top: 20px;
@@ -27,8 +44,8 @@
         }
 
         button {
-            background-color: #fff;
-            border: 1px solid #25D366;
+            background-color: #215583;
+            border: 1px solid #ffffff;
             padding: 5px;
             position: relative;
             width: 145px;
@@ -36,7 +53,8 @@
             transition: 0.5s;
             font-size: 17px;
             border-radius: 0.4em;
-    }
+        }
+
         button p {
             position: absolute;
             top: 0.4em;
@@ -45,7 +63,8 @@
             padding: 0;
             transition: .5s;
             color: #ffffff;
-    }
+        }
+
         button svg {
             position: absolute;
             top: 0.45em;
@@ -56,17 +75,40 @@
             transition: 0.5s;
             height: 1em;
             fill: #fff
-    }
+        }
+
         button:hover p {
             left: 0.5em;
             color: #fff
-    }
+        }
+
         button:hover svg {
             opacity: 1;
-    }
+        }
+
         button:hover {
             background-color: #25D366;
-    }
+        }
+
+        /* Sección de donación */
+        #ayudalos h1 {
+            color: #14293d; /* Color 950 */
+        }
+
+        .donacion-opcion h2 {
+            color: #276ba2; /* Color 600 */
+        }
+
+        .ubicaciones h3, .transferencia-info h3, .donacion-form h3 {
+            color: #1f4a6d; /* Color 800 */
+        }
+
+        /* Input fields */
+        #donacion-form input {
+            border: 1px solid #d5e6f4; /* Color 200 */
+            padding: 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
