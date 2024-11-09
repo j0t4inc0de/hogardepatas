@@ -61,7 +61,7 @@ img {
 }
 
 .btn-contactanos:hover {
-    background-color: #b8a99a; /* Color de fondo más oscuro al hacer hover */
+    background-color: #9eb89a; /* Color de fondo más oscuro al hacer hover */
 }
 
 /* ayudalos.html */
@@ -92,10 +92,6 @@ h1 {
 
 .donacion-opcion {
     margin-bottom: 40px;
-}
-
-h2 {
-    color: #ff6b6b;
 }
 
 p {
@@ -136,20 +132,6 @@ p {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-.donacion-form button {
-    padding: 10px;
-    background-color: #ff6b6b;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.donacion-form button:hover {
-    background-color: #ff4b4b;
 }
 
 body {
