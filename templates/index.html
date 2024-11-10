@@ -45,6 +45,24 @@
         h6 {
             color: #ffffff;
         }
+
+        .container-main {
+            width: 100%;
+            height: 100%;
+            /* Add your background pattern here */
+            background-color: #ffffff;
+            background-image: radial-gradient(rgba(12, 12, 12, 0.171) 2px, transparent 0);
+            background-size: 30px 30px;
+            background-position: -5px -5px;
+        }
+        .small-img {
+            padding: 10px;
+    max-width: 80%; /* Ajusta el ancho máximo */
+    max-height: 250px; /* Ajusta la altura máxima según prefieras */
+    object-fit: cover; /* Mantiene la proporción y ajusta el recorte si es necesario */
+}
+
+
 </style>
 <body>
     <!-- Header -->
@@ -77,24 +95,22 @@
             </div>
         </div>
     </section>
-
     <!-- Contenido Principal -->
-    <main class="container mt-4">
-        <div class="row">
-            <div class="col-md-8">
-                <p class="lead">
+    <div class="container-main">
+        <main class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="lead">
                     Es una iniciativa que busca mejorar la vida de los animales en situación de calle. Nacimos de la preocupación por la creciente cantidad de animales abandonados y la necesidad de crear soluciones concretas. En esta página podrás <strong>reportar a animales vistos en calles</strong> junto a su condición y localización para poder ir en su ayuda.
                     Podrás <strong>inscribirte para ser un hogar temporal</strong> cumpliendo unos pocos requisitos. Ayudar con <strong>donaciones caritativas</strong>, como dinero, comida o juguetes perrunos.
-                </p>
+                    </p>
+                </div>
+                <div class="col-md-4 d-flex justify-content-between">
+                    <img src="{% static 'img/perro1.jpeg' %}" alt="Perro rescatado 1" class="img-fluid rounded me-1 small-img">
+                    <img src="{% static 'img/perro2.jpeg' %}" alt="Perro rescatado 2" class="img-fluid rounded small-img">
+                </div>
             </div>
-            <div class="col-md-4 d-flex justify-content-between">
-                <img src="{% static 'img/perro1.jpeg' %}" alt="Perro rescatado 1" class="img-fluid rounded me-2">
-                <img src="{% static 'img/perro2.jpeg' %}" alt="Perro rescatado 2" class="img-fluid rounded">
-            </div>
-        </div>
-    </main>
-    <div>
-        <h6>hola</h6>
+        </main>
     </div>
     <!-- Boton Contactar 3 -->
     <!-- <div class="text-center my-5">
