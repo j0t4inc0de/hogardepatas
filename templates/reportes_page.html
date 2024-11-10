@@ -13,15 +13,57 @@
     
     <title>Reporte de Animal en Situación de Calle - Hogar de 4 Patas</title>
     <style>
+        /* Fondo con patrón animado */
         body {
-            background-color: #e6eff8; /* Color de fondo más claro de la paleta */
-            color: #1f3f5b; /* Color del texto principal */
+            background-color: #e6eff8;
+            color: #1f3f5b;
+            position: relative;
+            overflow: hidden;
         }
-        
-        button {
-            background-color: #5ca2d4; /* Color del botón usando el tono 400 de la paleta */
-            color: #ffffff; /* Color claro para el texto del botón */
-            border: 1px solid #ffffff; /* Borde en un tono más oscuro */
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, #3498db 10%, transparent 20%),
+                        radial-gradient(circle, transparent 10%, #3498db 20%);
+            background-size: 30px 30px;
+            animation: moveBackground 8s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(20%, 20%);
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Encabezados */
+        h1, h2, h3 {
+            color: #215583;
+        }
+
+        /* Botón */
+        .button-1 {
+            background-color: #5ca2d4;
+            color: #ffffff;
+            border: 1px solid #ffffff;
             cursor: pointer;
             border-radius: 8px;
             width: 160px;
@@ -31,59 +73,57 @@
         }
 
         button:hover {
-            background-color: #215583; /* Color más oscuro en hover */
-            box-shadow: 0 0 0 5px #95c1e4; /* Sombra de tono más claro */
+            background-color: #215583;
+            box-shadow: 0 0 0 5px #95c1e4;
+            color: #f3f7fc;
+        }
+        /* Botón volver */
+        .button-2 {
+            background-color: #da4237;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 160px;
+            height: 50px;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background-color: #215583;
+            box-shadow: 0 0 0 5px #95c1e4;
             color: #f3f7fc;
         }
 
+        /* Estilos del mapa */
         .map-container {
             height: 400px;
             width: 100%;
             margin-bottom: 20px;
-            border: 2px solid #95c1e4; /* Borde del contenedor del mapa */
-        }
-        
-        .icono-volver {
-            position: absolute;
-            top: 0px;
-            right: 20px;
-            padding: 10px;
-            font-size: 35px;
-            color: #ff4b4b;
-            text-decoration: none;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #95c1e4;
         }
 
-        .icono-volver:hover {
-            color: #ff6b6b;
-        }
-        
-        h1{
-            color: #215583; /* Color de encabezados usando un tono oscuro */
-        }
-        h2 {
-            color: #5ca2d4; /* Color de encabezados usando un tono oscuro */
-        }
+        /* Icono de regresar */
 
-        /* .form-label, .form-select, input[type="file"] {
-            color: #1f4a6d;
-        } */
 
-        
+        /* Estilos de entrada de radio personalizada */
         .radio-inputs {
-            position: relative;
             display: flex;
             flex-wrap: wrap;
             border-radius: 0.5rem;
             background-color: #ffffff;
-            box-sizing: border-box;
-            box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
             padding: 0.25rem;
-            width: 330px;
-            font-size: 18px;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
         }
 
         .radio-inputs .radio {
-            flex: 1 1 auto;
+            flex: 1;
             text-align: center;
         }
 
@@ -92,21 +132,18 @@
         }
 
         .radio-inputs .radio .name {
-            display: flex;
             cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0.5rem;
-            border: none;
-            padding: .5rem 0;
+            padding: 10px;
+            border-radius: 5px;
             color: rgba(51, 65, 85, 1);
-            transition: all .15s ease-in-out;
+            transition: all 0.2s ease-in-out;
         }
 
         .radio-inputs .radio input:checked + .name {
             background-color: #5ca2d4;
             color: #ffffff;
             font-weight: 600;
+            box-shadow: 0 0 8px rgba(92, 162, 212, 0.6);
         }
 
     </style>
@@ -119,12 +156,12 @@
     </div>
     <div class="container mt-5">
         <h1 class="text-center">Reportar Animal</h1>
-        <h2 class="text-left ">Proporciona la información del animal</h2>
+        <h2>Proporciona la información del animal</h2>
 
         <!-- Formulario de Reporte -->
         <form method="post" enctype="multipart/form-data" action="">
             {% csrf_token %}
-            
+
             <!-- Ubicación del animal (mapa) -->
             <div class="mb-3">
                 <label for="ubicacion" class="form-label">Ubicación del animal (Haz clic en el mapa para seleccionar):</label>
@@ -133,86 +170,61 @@
             </div>
 
             <!-- Estado de salud -->
-            <!-- <div class="mb-3">
-                <label for="estado_salud" class="form-label">Estado de salud del animal:</label>
-                <select class="form-select" id="estado_salud" name="estado_salud" required>
-                    <option value="Bueno">Bueno</option>
-                    <option value="Herido">Herido</option>
-                    <option value="Enfermo">Enfermo</option>
-                    <option value="Desnutrido">Desnutrido</option>
-                </select>
-            </div> -->
-            <!-- Estado de salud -->
             <h3>Estado de salud:</h3>
-            <div class="radio-inputs mb-3">
+            <div class="radio-inputs">
                 <label class="radio">
-                  <input type="radio" name="radio" checked="">
-                  <span class="name">Bueno</span>
+                    <input type="radio" name="estado_salud" value="Bueno" checked>
+                    <span class="name">Bueno</span>
                 </label>
                 <label class="radio">
-                  <input type="radio" name="radio">
-                  <span class="name">Herido</span>
+                    <input type="radio" name="estado_salud" value="Herido">
+                    <span class="name">Herido</span>
                 </label>
                 <label class="radio">
-                  <input type="radio" name="radio">
-                  <span class="name">Enfermo</span>
+                    <input type="radio" name="estado_salud" value="Enfermo">
+                    <span class="name">Enfermo</span>
                 </label>
                 <label class="radio">
-                  <input type="radio" name="radio">
-                  <span class="name">Desnutrido</span>
+                    <input type="radio" name="estado_salud" value="Desnutrido">
+                    <span class="name">Desnutrido</span>
                 </label>
-              </div>
+            </div>
 
             <!-- Fotografías del animal -->
-            <div class="mb-2">
-                <h3>Fotografia del animal:</h3>
+            <div class="mb-3">
+                <h3>Fotografía del animal:</h3>
                 <input type="file" class="form-control" id="fotografias" name="fotografias" multiple required>
             </div>
 
-            <!-- Fecha y hora del reporte -->
-            <!-- <div class="mb-3">
-                <label for="fecha_hora" class="form-label">Fecha y hora del reporte:</label>
-                <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" required>
-            </div> -->
-
             <!-- Botón para enviar -->
-            <!-- <div class="text-center p-2">
-                <button type="submit" class="btn btn-success btn-sm">Enviar Reporte</button>
-            </div> -->
-            <div class="text-center p-2">
-                <button>Enviar Reporte</button>
+            <div class="text-center mt-4">
+                <button class="button-1" type="submit">Enviar Reporte</button>
+                <!-- Botón para enviar -->
+                <button class="button-2" type="submit">Volver</button>
             </div>
         </form>
     </div>
 
-    <!-- Leaflet JS (para el mapa) -->
+    <!-- Leaflet JS para el mapa -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script para manejar el mapa -->
     <script>
-        // Iniciar el mapa centrado en una coordenada inicial (ej. centro en Chile)
-        var map = L.map('map').setView([-37.466910, -72.356524], 10); // Latitud/longitud de ejemplo
-         
-        // Añadir capa de mapa (usando OpenStreetMap)
+        // Mapa centrado en una ubicación inicial (ej. Chile)
+        var map = L.map('map').setView([-37.466910, -72.356524], 10); 
+
+        // Capa de mapa
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Variable para almacenar el marcador en el mapa
         var marker;
 
-        // Evento para manejar el clic en el mapa y seleccionar ubicación
+        // Evento para seleccionar ubicación en el mapa
         map.on('click', function(e) {
-            // Si ya existe un marcador, lo eliminamos
-            if (marker) {
-                map.removeLayer(marker);
-            }
-            // Añadir nuevo marcador en la ubicación clickeada
+            if (marker) map.removeLayer(marker);
             marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-
-            // Asignar la latitud y longitud al campo oculto del formulario
             document.getElementById('ubicacion').value = e.latlng.lat + ',' + e.latlng.lng;
         });
     </script>
