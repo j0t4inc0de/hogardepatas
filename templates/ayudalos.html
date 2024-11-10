@@ -112,6 +112,24 @@
             padding: 5px;
             border-radius: 5px;
         }
+
+
+        .input {
+            border: 2px solid transparent;
+            padding-left: 0.8em;
+            outline: none;
+            overflow: hidden;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            transition: all 0.5s;
+        }
+
+        .input:hover,
+        .input:focus {
+            border: 2px solid #4a9dec;
+            box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -158,16 +176,17 @@
             
             <form id="donacion-form" class="donacion-form">
                 <label for="nombre">Nombre completo:</label>
-                <input type="text" id="nombre" name="nombre" required>
-
+                <!-- <input type="text" id="nombre" name="nombre" required> -->
+                    <input type="text" id="nombre" name="nombre" class="input" required>
                 <label for="donacion">¿Qué deseas donar?</label>
-                <input type="text" id="donacion" name="donacion" required>
-
+                <!-- <input type="text" id="donacion" name="donacion" required> -->
+                    <input type="text" id="donacion" name="donacion" class="input" required>
                 <label for="contacto">Número de contacto:</label>
-                <input type="tel" id="contacto" name="contacto" required>
-
+                <!-- <input type="tel" id="contacto" name="contacto" required> -->
+                    <input type="tel" id="contacto" name="contacto" class="input" required>
                 <label for="direccion">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required>
+                <!-- <input type="text" id="direccion" name="direccion" required> -->
+                    <input type="text" id="direccion" name="direccion" class="input" required>
 
                 <!-- Boton 2 Cordinar Donacion -->
                 <div class="text-center">
