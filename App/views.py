@@ -16,31 +16,44 @@ def ir_hogartemporal(request):
 def ir_faq(request):
     return render(request, 'faq_page.html')
 
-def enviar_reporte(request):
+def ir_reportes(request):
     if request.method == 'POST':
         ubicacion = request.POST.get('ubicacion')
         estado_salud = request.POST.get('estado_salud')
+        
+        # Guardar la(s) imagen(es) y obtener sus rutas
+        fotos = request.FILES.getlist('fotografias')
+        foto_urls = []
+        for foto in fotos:
+            path = default_storage.save(f'reportes/{foto.name}', foto)
+            foto_urls.append(path)
+        
+        # Enviar correo
+        subject = "Nuevo Reporte de Animal en Situación de Calle"
+        message = f"""
+        Se ha recibido un nuevo reporte:
 
-        # Obtener las fotografías subidas por el usuario
-        fotografias = request.FILES.getlist('fotografias')
+        - Ubicación: {ubicacion}
+        - Estado de salud: {estado_salud}
 
-        message = f'Ubicación: {ubicacion}\nEstado de salud: {estado_salud}'
-
-        for foto in fotografias:
-            # Guardar la fotografía en algún lugar temporal o permanente
-            file_path = default_storage.save(foto.name, foto)
-
-            # Adjuntar la fotografía al mensaje
-            message += f'\nAdjunto: {settings.BASE_URL}/{file_path}'  # Cambiar BASE_URL por la URL base de tu sitio
-
-        send_mail(
-            'Reporte de Animal en Situación de Calle - Hogar de 4 Patas',
+        Adjuntamos las fotos en el correo.
+        """
+        
+        # Lista de archivos adjuntos
+        email = EmailMessage(
+            subject,
             message,
-            'hogarde4patas@yahoo.com',  # Tu correo de Yahoo
-            ['hogarde4patas@yahoo.com'],  # Lista de destinatarios
-            fail_silently=False,
+            settings.DEFAULT_FROM_EMAIL,
+            [settings.EMAIL_HOST_USER],
         )
-
-        return redirect('index')  # Redirigir a la página principal después de enviar el reporte
-
-    return render(request, 'reportes_page.html')  # Si no es un request POST, mostrar el formulario nuevamente
+        
+        for foto_url in foto_urls:
+            email.attach_file(foto_url)
+        
+        try:
+            email.send()
+            return render(request, 'reportes_page.html', {'mensaje': 'Reporte enviado con éxito.'})
+        except Exception as e:
+            print(f"Error al enviar correo: {e}")
+            return render(request, 'reportes_page.html', {'mensaje': 'Error al enviar el reporte.'})
+    return render(request, 'reportes_page.html')

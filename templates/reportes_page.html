@@ -176,12 +176,18 @@
         <!-- Formulario de Reporte -->
         <form method="post" enctype="multipart/form-data" action="">
             {% csrf_token %}
+            <!-- reportes_page.html -->
+            {% if mensaje %}
+                <div class="alert alert-success" role="alert">
+                    {{ mensaje }}
+                </div>
+            {% endif %}
 
             <!-- Ubicación del animal (mapa) -->
             <div class="mb-3">
                 <label for="ubicacion" class="form-label">Ubicación del animal (Haz clic en el mapa para seleccionar):</label>
                 <div id="map" class="map-container"></div>
-                <input type="hidden" id="ubicacion" name="ubicacion" required>
+                <input type="hidden" id="ubicacion" name="ubicacion">
             </div>
 
             <!-- Estado de salud -->
@@ -208,7 +214,7 @@
             <!-- Fotografías del animal -->
             <div class="mb-3">
                 <h3>Fotografía del animal:</h3>
-                <input type="file" class="form-control" id="fotografias" name="fotografias" multiple required>
+                <input type="file" class="form-control" id="fotografias" name="fotografias" multiple>
             </div>
 
             <!-- Botones para enviar y volver -->
