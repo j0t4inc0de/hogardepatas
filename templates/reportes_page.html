@@ -59,7 +59,7 @@
             color: #215583;
         }
 
-        /* Botón */
+        /* Botones */
         .button-1 {
             background-color: #5ca2d4;
             color: #ffffff;
@@ -70,16 +70,14 @@
             height: 50px;
             transition: 0.3s;
             font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            margin: 5px;
         }
-
-        button:hover {
-            background-color: #215583;
-            box-shadow: 0 0 0 5px #95c1e4;
-            color: #f3f7fc;
-        }
-        /* Botón volver */
         .button-2 {
-            background-color: #da4237;
+            background-color: #eb3d3d;
             color: #ffffff;
             border: 1px solid #ffffff;
             cursor: pointer;
@@ -88,9 +86,14 @@
             height: 50px;
             transition: 0.3s;
             font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            margin: 5px;
         }
 
-        button:hover {
+        .button-1:hover, .button-2:hover {
             background-color: #215583;
             box-shadow: 0 0 0 5px #95c1e4;
             color: #f3f7fc;
@@ -107,7 +110,19 @@
         }
 
         /* Icono de regresar */
+        .icono-volver {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            padding: 10px;
+            font-size: 35px;
+            color: #ff4b4b;
+            text-decoration: none;
+        }
 
+        .icono-volver:hover {
+            color: #ff6b6b;
+        }
 
         /* Estilos de entrada de radio personalizada */
         .radio-inputs {
@@ -196,11 +211,10 @@
                 <input type="file" class="form-control" id="fotografias" name="fotografias" multiple required>
             </div>
 
-            <!-- Botón para enviar -->
+            <!-- Botones para enviar y volver -->
             <div class="text-center mt-4">
                 <button class="button-1" type="submit">Enviar Reporte</button>
-                <!-- Botón para enviar -->
-                <button class="button-2" type="submit">Volver</button>
+                <a class="button-2" href="{% url 'index' %}">Volver</a>
             </div>
         </form>
     </div>
