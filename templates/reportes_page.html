@@ -19,7 +19,7 @@
         }
         
         button {
-            background-color: #276ba2; /* Color del botón usando el tono 400 de la paleta */
+            background-color: #5ca2d4; /* Color del botón usando el tono 400 de la paleta */
             color: #ffffff; /* Color claro para el texto del botón */
             border: 1px solid #ffffff; /* Borde en un tono más oscuro */
             cursor: pointer;
@@ -30,7 +30,7 @@
         }
 
         button:hover {
-            background-color: #276ba2; /* Color más oscuro en hover */
+            background-color: #215583; /* Color más oscuro en hover */
             box-shadow: 0 0 0 5px #95c1e4; /* Sombra de tono más claro */
             color: #f3f7fc;
         }
@@ -63,9 +63,51 @@
             color: #5ca2d4; /* Color de encabezados usando un tono oscuro */
         }
 
-        .form-label, .form-select, input[type="file"] {
-            color: #1f4a6d; /* Color del texto de etiquetas y select */
+        /* .form-label, .form-select, input[type="file"] {
+            color: #1f4a6d;
+        } */
+
+        
+        .radio-inputs {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+            padding: 0.25rem;
+            width: 330px;
+            font-size: 18px;
         }
+
+        .radio-inputs .radio {
+            flex: 1 1 auto;
+            text-align: center;
+        }
+
+        .radio-inputs .radio input {
+            display: none;
+        }
+
+        .radio-inputs .radio .name {
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            border: none;
+            padding: .5rem 0;
+            color: rgba(51, 65, 85, 1);
+            transition: all .15s ease-in-out;
+        }
+
+        .radio-inputs .radio input:checked + .name {
+            background-color: #5ca2d4;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
     </style>
 </head>
 <body>
@@ -90,7 +132,7 @@
             </div>
 
             <!-- Estado de salud -->
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="estado_salud" class="form-label">Estado de salud del animal:</label>
                 <select class="form-select" id="estado_salud" name="estado_salud" required>
                     <option value="Bueno">Bueno</option>
@@ -98,11 +140,31 @@
                     <option value="Enfermo">Enfermo</option>
                     <option value="Desnutrido">Desnutrido</option>
                 </select>
-            </div>
+            </div> -->
+            <!-- Estado de salud -->
+            <h3>Estado de salud:</h3>
+            <div class="radio-inputs mb-3">
+                <label class="radio">
+                  <input type="radio" name="radio" checked="">
+                  <span class="name">Bueno</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="radio">
+                  <span class="name">Herido</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="radio">
+                  <span class="name">Enfermo</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="radio">
+                  <span class="name">Desnutrido</span>
+                </label>
+              </div>
 
             <!-- Fotografías del animal -->
-            <div class="mb-3">
-                <label for="fotografias" class="form-label">Sube fotografías del animal:</label>
+            <div class="mb-2">
+                <h3>Fotografia del animal:</h3>
                 <input type="file" class="form-control" id="fotografias" name="fotografias" multiple required>
             </div>
 
