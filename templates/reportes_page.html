@@ -11,11 +11,12 @@
     
     <title>Reporte de Animal en Situación de Calle - Hogar de 4 Patas</title>
     <style>
-body {
+        /* Fondo con patrón animado */
+        body {
     background-color: #e6eff8;
     color: #1f3f5b;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Previene desplazamiento horizontal */
     min-height: 100vh;
     position: relative;
 }
@@ -40,129 +41,161 @@ body::before {
         background-position: 0 0;
     }
     100% {
-        background-position: 60px 60px;
+        background-position: 60px 60px; /* Ajusta este valor para controlar la velocidad */
     }
 }
 
-.container {
-    width: 900px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 30px;
-    padding: 35px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
-}
+        /* Contenedor principal */
+        .container {
+            width: 900px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            
+        
+        }
+        /* Contenedor principal de la página al 80% */
+        .main-content {
+            width: 100%;
+            max-width: 1500px; /* Limita el ancho máximo para pantallas muy grandes */
+            margin: 0 auto; /* Centra el contenedor principal */
+            
+        }
 
-.main-content {
-    width: 100%;
-    max-width: 1500px;
-    margin: 0 auto;
-}
+        /* Encabezados */
+        h1, h2, h3 {
+            color: #215583;
+        }
 
-h1, h2, h3 {
-    color: #215583;
-}
+        /* Botones */
+        .button-1 {
+            background-color: #5ca2d4;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 160px;
+            height: 50px;
+            transition: 0.3s;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            margin: 1px;
+            position: relative;
+        }
 
-/* Estilos para botones */
-.button-1, .button-2 {
-    width: 160px;
-    height: 50px;
-    border-radius: 8px;
-    transition: 0.3s;
-    font-weight: 600;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    text-decoration: none;
-    margin: 5px;
-}
+        .button-2 {
+            background-color: #eb3d3d;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 160px;
+            height: 50px;
+            transition: 0.3s;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+            text-decoration: none;
+            margin: 5px;
+        }
 
-.button-1 {
-    background-color: #5ca2d4;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-}
+        .button-1:hover, .button-2:hover {
+            background-color: #215583;
+            box-shadow: 0 0 0 5px #95c1e4;
+            color: #f3f7fc;
+        }
 
-.button-2 {
-    background-color: #eb3d3d;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-}
+        /* Mapa */
+        .map-container {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #95c1e4;
+        }
 
-.button-1:hover, .button-2:hover {
-    background-color: #215583;
-    box-shadow: 0 0 0 5px #95c1e4;
-    color: #f3f7fc;
-}
+        /* Icono volver */
+        .icono-volver {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            padding: 10px;
+            font-size: 35px;
+            color: #ff4b4b;
+            text-decoration: none;
+        }
 
-/* Estilos para el mapa */
-.map-container {
-    height: 400px;
-    width: 100%;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid #95c1e4;
-}
+        .icono-volver:hover {
+            color: #ff6b6b;
+        }
 
-/* Estilos para icono volver */
-.icono-volver {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    padding: 10px;
-    font-size: 35px;
-    color: #ff4b4b;
-    text-decoration: none;
-}
+        /* Radio inputs personalizados */
+        .radio-inputs {
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            padding: 0.25rem;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+        }
 
-.icono-volver:hover {
-    color: #ff6b6b;
-}
+        .radio-inputs .radio {
+            flex: 1;
+            text-align: center;
+        }
 
-/* Media query para pantallas pequeñas */
-@media (max-width: 767px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-        border-radius: 15px;
-    }
+        .radio-inputs .radio input {
+            display: none;
+        }
 
-    h1, h2, h3 {
-        font-size: 1.5em; /* Ajuste de tamaño de los encabezados */
-        text-align: center;
-    }
+        .radio-inputs .radio .name {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            color: rgba(51, 65, 85, 1);
+            transition: all 0.2s ease-in-out;
+        }
 
-    .button-1, .button-2 {
-        width: 100%;
-        height: 40px;
-        line-height: 40px;
-        font-size: 1em;
-        margin: 10px 0;
-    }
+        .radio-inputs .radio input:checked + .name {
+            background-color: #5ca2d4;
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 0 8px rgba(92, 162, 212, 0.6);
+        }
 
-    .map-container {
-        height: 300px;
-    }
+        /* Previsualización de imágenes */
+        .preview-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
 
-    .icono-volver {
-        font-size: 30px;
-        top: 5px;
-        right: 10px;
-    }
+        .preview-images img {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-    .radio-inputs {
-        max-width: 100%;
-        flex-direction: column; /* Coloca los elementos en una columna */
-        text-align: center;
-    }
-
-    .preview-images img {
-        max-width: 100px;
-        max-height: 100px;
-    }
-}
+        /* Alertas */
+        .alert {
+            display: none;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
