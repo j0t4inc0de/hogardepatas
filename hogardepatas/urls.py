@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from App.views import inicio, ir_ayudalos, ir_reportes, ir_faq, ir_hogartemporal
+from App.views import inicio, ir_ayudalos, ir_reportes, ir_faq, ir_hogartemporal,procesar_reporte
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +26,6 @@ urlpatterns = [
     path('hogardepatas/reportes/', ir_reportes, name='reportes'),
     path('hogardepatas/hogartemporal/', ir_hogartemporal, name='hogartemporal'),
     path('hogardepatas/faq/', ir_faq, name='faq'),
+    path('hogardepatas/procesar_reporte',procesar_reporte, name='procesar_reporte'),
 ]
 urlpatterns+= staticfiles_urlpatterns()

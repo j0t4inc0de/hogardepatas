@@ -7,8 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     
     <title>Reporte de Animal en Situación de Calle - Hogar de 4 Patas</title>
@@ -18,7 +16,9 @@
             background-color: #e6eff8;
             color: #1f3f5b;
             position: relative;
-            overflow: hidden;
+            overflow-y: auto; /* Habilita el desplazamiento vertical en caso de contenido adicional */
+            min-height: 100vh;
+            
         }
 
         body::before {
@@ -47,11 +47,20 @@
         /* Contenedor principal */
         .container {
             background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 30px;
+            border-radius: 30px;
+            padding: 35px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 1;
+            
+        
+        }
+        /* Contenedor principal de la página al 80% */
+        .main-content {
+            width: 100%;
+            max-width: 1500px; /* Limita el ancho máximo para pantallas muy grandes */
+            margin: 0 auto; /* Centra el contenedor principal */
+            
         }
 
         /* Encabezados */
@@ -74,8 +83,10 @@
             text-align: center;
             line-height: 50px;
             text-decoration: none;
-            margin: 5px;
+            margin: 1px;
+            position: relative;
         }
+
         .button-2 {
             background-color: #eb3d3d;
             color: #ffffff;
@@ -99,7 +110,7 @@
             color: #f3f7fc;
         }
 
-        /* Estilos del mapa */
+        /* Mapa */
         .map-container {
             height: 400px;
             width: 100%;
@@ -109,7 +120,7 @@
             border: 2px solid #95c1e4;
         }
 
-        /* Icono de regresar */
+        /* Icono volver */
         .icono-volver {
             position: absolute;
             top: 10px;
@@ -124,7 +135,7 @@
             color: #ff6b6b;
         }
 
-        /* Estilos de entrada de radio personalizada */
+        /* Radio inputs personalizados */
         .radio-inputs {
             display: flex;
             flex-wrap: wrap;
@@ -161,91 +172,168 @@
             box-shadow: 0 0 8px rgba(92, 162, 212, 0.6);
         }
 
+        /* Previsualización de imágenes */
+        .preview-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .preview-images img {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Alertas */
+        .alert {
+            display: none;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
-    <div>
-        <a href="{% url 'index' %}" class="icono-volver" title="Volver al inicio">
-            <i class="fa-solid fa-xmark"></i>
-        </a>
-    </div>
-    <div class="container mt-5">
-        <h1 class="text-center">Reportar Animal</h1>
-        <h2>Proporciona la información del animal</h2>
+    <div class="main-content">
+        <div>
+            <a href="{% url 'index' %}" class="icono-volver" title="Volver al inicio">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="container mt-5">
+            <h1 class="text-center">Reportar Animal</h1>
+            <h2>Proporciona la información del animal</h2>
 
-        <!-- Formulario de Reporte -->
-        <form method="post" enctype="multipart/form-data" action="">
-            {% csrf_token %}
-            <!-- reportes_page.html -->
-            {% if mensaje %}
-                <div class="alert alert-success" role="alert">
-                    {{ mensaje }}
+            <div class="alert alert-success" role="alert" id="successAlert">
+                Reporte enviado exitosamente!
+            </div>
+            <div class="alert alert-danger" role="alert" id="errorAlert">
+                Hubo un error al enviar el reporte. Por favor, intente nuevamente.
+            </div>
+
+            <form id="reportForm" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="ubicacion" class="form-label">Ubicación del animal (Haz clic en el mapa para seleccionar):</label>
+                    <div id="map" class="map-container"></div>
+                    <input type="hidden" id="ubicacion" name="ubicacion" required>
                 </div>
-            {% endif %}
 
-            <!-- Ubicación del animal (mapa) -->
-            <div class="mb-3">
-                <label for="ubicacion" class="form-label">Ubicación del animal (Haz clic en el mapa para seleccionar):</label>
-                <div id="map" class="map-container"></div>
-                <input type="hidden" id="ubicacion" name="ubicacion">
-            </div>
+                <h3>Estado de salud:</h3>
+                <div class="radio-inputs">
+                    <label class="radio">
+                        <input type="radio" name="estado_salud" value="Bueno" checked>
+                        <span class="name">Bueno</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="estado_salud" value="Herido">
+                        <span class="name">Herido</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="estado_salud" value="Enfermo">
+                        <span class="name">Enfermo</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="estado_salud" value="Desnutrido">
+                        <span class="name">Desnutrido</span>
+                    </label>
+                </div>
 
-            <!-- Estado de salud -->
-            <h3>Estado de salud:</h3>
-            <div class="radio-inputs">
-                <label class="radio">
-                    <input type="radio" name="estado_salud" value="Bueno" checked>
-                    <span class="name">Bueno</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="estado_salud" value="Herido">
-                    <span class="name">Herido</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="estado_salud" value="Enfermo">
-                    <span class="name">Enfermo</span>
-                </label>
-                <label class="radio">
-                    <input type="radio" name="estado_salud" value="Desnutrido">
-                    <span class="name">Desnutrido</span>
-                </label>
-            </div>
+                <div class="mb-3">
+                    <h3>Fotografías del animal:</h3>
+                    <input type="file" class="form-control" id="fotografias" name="fotografias" multiple accept="image/*" required>
+                    <div class="preview-images" id="imagePreview"></div>
+                </div>
 
-            <!-- Fotografías del animal -->
-            <div class="mb-3">
-                <h3>Fotografía del animal:</h3>
-                <input type="file" class="form-control" id="fotografias" name="fotografias" multiple>
-            </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción adicional:</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Describe cualquier detalle adicional sobre el animal..."></textarea>
+                </div>
 
-            <!-- Botones para enviar y volver -->
-            <div class="text-center mt-4">
-                <button class="button-1" type="submit">Enviar Reporte</button>
-                <a class="button-2" href="{% url 'index' %}">Volver</a>
-            </div>
-        </form>
+                <div class="text-center mt-4">
+                    <button type="submit" class="button-1" id="submitButton">Enviar Reporte</button>
+                    <a href="{% url 'index' %}" class="button-2">Volver</a>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <!-- Leaflet JS para el mapa -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Mapa centrado en una ubicación inicial (ej. Chile)
-        var map = L.map('map').setView([-37.466910, -72.356524], 10); 
-
-        // Capa de mapa
+        var map = L.map('map').setView([-37.466910, -72.356524], 10);
+        
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
         var marker;
 
-        // Evento para seleccionar ubicación en el mapa
         map.on('click', function(e) {
-            if (marker) map.removeLayer(marker);
+            if (marker) {
+                map.removeLayer(marker);
+            }
             marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
             document.getElementById('ubicacion').value = e.latlng.lat + ',' + e.latlng.lng;
+        });
+
+        // Previsualización de imágenes
+        document.getElementById('fotografias').addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            
+            for (const file of this.files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Manejo del formulario
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            
+            fetch('{% url "procesar_reporte" %}', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('successAlert').style.display = 'block';
+                    document.getElementById('errorAlert').style.display = 'none';
+                    document.getElementById('reportForm').reset();
+                    if (marker) {
+                        map.removeLayer(marker);
+                    }
+                    document.getElementById('imagePreview').innerHTML = '';
+                } else {
+                    throw new Error('Error en el servidor');
+                }
+            })
+            .catch(error => {
+                document.getElementById('errorAlert').style.display = 'block';
+                document.getElementById('successAlert').style.display = 'none';
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+            });
         });
     </script>
 </body>
