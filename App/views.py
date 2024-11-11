@@ -19,6 +19,8 @@ def ir_faq(request):
     return render(request, 'faq_page.html')
 def ir_adopcion(request):
     return render(request, 'adopcion_page.html')
+def ir_guia(request):
+    return render(request, 'guia_usuario.html')
 
 def ir_reportes(request):
     if request.method == 'POST':
