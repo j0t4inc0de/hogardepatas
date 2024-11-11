@@ -17,6 +17,8 @@ def ir_hogartemporal(request):
     return render(request, 'hogartemporal_page.html')
 def ir_faq(request):
     return render(request, 'faq_page.html')
+def ir_adopcion(request):
+    return render(request, 'adopcion_page.html')
 
 def ir_reportes(request):
     if request.method == 'POST':
