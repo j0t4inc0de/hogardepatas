@@ -258,8 +258,8 @@
                             <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="+56 9 XXXX XXXX" required maxlength="14">
                         </div>
                         <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre del animal</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                            <label for="nombre2" class="form-label">Nombre del animal</label>
+                            <input type="text" class="form-control" id="nombre2" name="nombre2" required>
                         </div>
                         
                         <button type="submit" class="btn-submit">
@@ -326,42 +326,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Validación de RUT 
-            function validarRut(rut) {
-                // Limpiar el RUT de puntos y guión
-                rut = rut.replace(/\./g, '').replace(/-/g, '');
-                var dv = rut.slice(-1);
-                var numero = rut.slice(0, -1);
-                var suma = 0;
-                var multiplo = 2;
-
-                // calculadora de digitos despues del guion para su validacion 
-                for(var i = numero.length - 1; i >= 0; i--) {
-                    suma += numero[i] * multiplo;
-                    multiplo = multiplo === 7 ? 2 : multiplo + 1;
-                }
-
-                var dvEsperado = 11 - (suma % 11);
-                dvEsperado = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
-
-                return dv.toUpperCase() === dvEsperado;
-            }
-
-            // reescribe rut mientras se escribe 
-            document.getElementById('rut').addEventListener('input', function(e) {
-                let rut = e.target.value.replace(/\./g, '').replace(/-/g, '');
-                if(rut.length > 1) {
-                    rut = rut.slice(0, -1) + '-' + rut.slice(-1);
-                }
-                if(rut.length > 4) {
-                    rut = rut.slice(0, -5) + '.' + rut.slice(-5);
-                }
-                if(rut.length > 8) {
-                    rut = rut.slice(0, -9) + '.' + rut.slice(-9);
-                }
-                e.target.value = rut;
-            });
-            
 
             // rescribe inicales del telefono 
             document.getElementById('telefono').addEventListener('input', function(e) {
@@ -383,7 +347,7 @@
             e.preventDefault();
 
             // atrapa los datos del formulariio
-            const nombreAnimal = document.getElementById('nombre').value;
+            const nombreAnimal = document.getElementById('nombre2').value;
             const nombre = document.getElementById('nombre').value;
             const direccion = document.getElementById('direccion').value;
             const telefono = document.getElementById('telefono').value;
@@ -391,8 +355,7 @@
             // Crear el mensaje para WhatsApp
             const mensaje = `¡Hola! Me gustaría adoptar a ${nombreAnimal}.%0A%0A` +
                         `*Mis datos son:*%0A` +
-                        `Nombre: ${nombre} ${apellido}%0A` +
-                        `RUT: ${rut}%0A` +
+                        `Nombre: ${nombre}%0A` +
                         `Dirección: ${direccion}%0A` +
                         `Teléfono: ${telefono}`;
 
@@ -415,12 +378,6 @@
         document.getElementById('postulacionForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // se asegura de validar el rut 
-            const rut = document.getElementById('rut').value;
-            if(!validarRut(rut)) {
-                alert('Por favor ingrese un RUT válido');
-                return;
-            }
 
             // Obtener los valores del formulario
             const nombre = document.getElementById('nombre').value;
@@ -432,7 +389,6 @@
             const mensaje = `¡Hola! Me gustaría postular como Hogar Temporal.%0A%0A` +
                         `*Datos de la postulación:*%0A` +
                         `Nombre: ${nombre} ${apellido}%0A` +
-                        `RUT: ${rut}%0A` +
                         `Dirección: ${direccion}%0A` +
                         `Teléfono: ${telefono}`;
 
