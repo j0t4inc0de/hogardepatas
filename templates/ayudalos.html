@@ -181,21 +181,22 @@
             <p>Si no puedes acercarte a ninguna de las ubicaciones anteriormente mostradas, puede mandarnos tus datos en este formulario para nosotros cordinar contigo e ir a por tu donacion</p>
             <p>Ningun dato que entreges en este formulario será publico, solo sera visto por ti y la persona de la fundacion que cordine la visita</p>
             
-            <form id="donacion-form" class="donacion-form">
+            <form id="donacion-form" class="donacion-form" onsubmit="return validarContacto()">
                 <label for="nombre">Nombre completo:</label>
-                <!-- <input type="text" id="nombre" name="nombre" required> -->
-                    <input type="text" id="nombre" name="nombre" class="input" required>
+                <input type="text" id="nombre" name="nombre" class="input" required>
+                
                 <label for="donacion">¿Qué deseas donar?</label>
-                <!-- <input type="text" id="donacion" name="donacion" required> -->
-                    <input type="text" id="donacion" name="donacion" class="input" required>
+                <input type="text" id="donacion" name="donacion" class="input" required>
+                
                 <label for="contacto">Número de contacto:</label>
-                <!-- <input type="tel" id="contacto" name="contacto" required> -->
-                    <input type="tel" id="contacto" name="contacto" class="input" required>
+                <input type="tel" id="contacto" name="contacto" class="input" required maxlength="14"
+                       pattern="^[0-9+()-]*$" inputmode="numeric">
+            
+                <small id="contacto-error" style="color: red; display: none;">Solo se permiten números y los símbolos +, -, ().</small>
+                
                 <label for="direccion">Dirección:</label>
-                <!-- <input type="text" id="direccion" name="direccion" required> -->
-                    <input type="text" id="direccion" name="direccion" class="input" required>
-
-                <!-- Boton 2 Cordinar Donacion -->
+                <input type="text" id="direccion" name="direccion" class="input" required>
+            
                 <div class="text-center">
                     <button onclick="enviarWhatsApp()">
                         <p>Cordinar Donacion</p> 
@@ -208,22 +209,33 @@
         </div>
     </section>
     <script>
-        function enviarWhatsApp() {
-            // Obtén los valores de los campos del formulario
-            const nombre = document.getElementById('nombre').value;
-            const donacion = document.getElementById('donacion').value;
-            const contacto = document.getElementById('contacto').value;
-            const direccion = document.getElementById('direccion').value;
-
-            // Crea el mensaje que quieres enviar a WhatsApp
-            const mensaje = `Hola, soy ${nombre}. Quiero donar ${donacion}. Mi número de contacto es ${contacto} y mi dirección es ${direccion}. ¿Como cordinamos la visita?`;
-
-            // Crea el enlace de WhatsApp con el número de teléfono de destino (ejemplo: +569xxxxxxxx)
-            const numeroWhatsApp = '56953134406'; // Cambia esto por el número real de WhatsApp de la fundación
-            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-
-            // Redirige al usuario a WhatsApp con el mensaje preformateado
-            window.open(url, '_blank');
+        // Valida el campo contacto permitiendo solo dígitos, más y paréntesis
+        document.getElementById('contacto').addEventListener('input', function (e) {
+            const contactoInput = e.target;
+            const contactoError = document.getElementById('contacto-error');
+            const regex = /^[0-9+()-]*$/;
+    
+            if (!regex.test(contactoInput.value)) {
+                contactoInput.value = contactoInput.value.replace(/[^0-9+()-]/g, ''); // Elimina caracteres inválidos
+                contactoError.style.display = 'block';
+            } else {
+                contactoError.style.display = 'none';
+            }
+        });
+    
+        // Validación final en el envío del formulario
+        function validarContacto() {
+            const contactoInput = document.getElementById('contacto');
+            const regex = /^[0-9+()-]+$/;
+            const contactoError = document.getElementById('contacto-error');
+    
+            if (!regex.test(contactoInput.value)) {
+                contactoError.style.display = 'block';
+                return false; // Previene el envío del formulario
+            } else {
+                contactoError.style.display = 'none';
+                return true;
+            }
         }
     </script>
 </body>
