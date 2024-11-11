@@ -61,7 +61,7 @@ def ir_reportes(request):
             return render(request, 'reportes_page.html', {'mensaje': 'Reporte enviado con éxito.'})
         except Exception as e:
             print(f"Error al enviar correo: {e}")
-            return render(request, 'reportes_page.html', {'mensaje': 'Error al enviar el reporte.'})
+            return render(request, 'reportes_page.html', {'mensaje': 'Error al enviar el reporte, debe completar todos los campos.'})
     return render(request, 'reportes_page.html')
 
 
