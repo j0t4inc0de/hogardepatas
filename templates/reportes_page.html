@@ -13,36 +13,37 @@
     <style>
         /* Fondo con patrón animado */
         body {
-            background-color: #e6eff8;
-            color: #1f3f5b;
-            position: relative;
-            overflow-y: auto; /* Habilita el desplazamiento vertical en caso de contenido adicional */
-            min-height: 100vh;
-            
-        }
+    background-color: #e6eff8;
+    color: #1f3f5b;
+    overflow-y: auto;
+    overflow-x: hidden; /* Previene desplazamiento horizontal */
+    min-height: 100vh;
+    position: relative;
+}
 
-        body::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, #3498db 10%, transparent 20%),
-                        radial-gradient(circle, transparent 10%, #3498db 20%);
-            background-size: 30px 30px;
-            animation: moveBackground 8s linear infinite;
-            z-index: -1;
-        }
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, #3498db 10%, transparent 20%),
+                radial-gradient(circle, transparent 10%, #3498db 20%);
+    background-size: 30px 30px;
+    background-attachment: fixed;
+    animation: moveBackground 8s linear infinite;
+    z-index: -1;
+}
 
-        @keyframes moveBackground {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(20%, 20%);
-            }
-        }
+@keyframes moveBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 60px 60px; /* Ajusta este valor para controlar la velocidad */
+    }
+}
 
         /* Contenedor principal */
         .container {
